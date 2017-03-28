@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
-class Widget extends Model
+class Widget extends SuperModel
 {
     /**
      * The attributes that are mass assignable.

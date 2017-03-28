@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\EmailNotProvidedException;
+use App\Widget;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -17,6 +19,8 @@ class TestController extends Controller
 //        alert()->overlay('Listen', 'I hear beatle music!', 'success');
 //        alert()->error('Problem', 'Cannot hear');
 //        return view('pages.index');
+//        $result = Widget::findOrFail(200);
+//        throw new EmailNotProvidedException('facebook');
     }
 
     /**

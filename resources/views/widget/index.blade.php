@@ -23,7 +23,7 @@
                         {{ $widget->id }}
                     </td>
                     <td>
-                        <a href="/widget/{{ $widget->id }}">{{ $widget->name }}</a>
+                        <a href="/widget/{{ $widget->id }}-{{ $widget->slug }}">{{ $widget->name }}</a>
                     </td>
                     <td>
                         {{ $widget->created_at }}
