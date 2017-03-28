@@ -19,8 +19,13 @@ Route::get('test', 'TestController@index')->middleware(['auth', 'throttle']);
 
 Auth::routes();
 
-// home page route
+// Pages route
 Route::get('/', 'PagesController@index')->name('home');
+
+
+Route::get('terms-of-service', 'PagesController@terms');
+
+Route::get('privacy', 'PagesController@privacy');
 
 Route::get('widget/create', 'WidgetController@create')->name('widget.create');
 
@@ -33,3 +38,6 @@ Route::resource('widget', 'WidgetController');
 // Admin route
 Route::get('/admin', 'AdminController@index')->name('admin');
 
+// socialite routes
+Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
