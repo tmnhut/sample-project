@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateImageRequest;
+use App\Http\Requests\EditImageRequest;
 use App\MarketingImage;
 use App\Traits\ManagesImages;
 use Illuminate\Http\Request;
@@ -14,8 +15,7 @@ class MarketingImageController extends Controller
     use ManagesImages;
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('admin');
+        $this->middleware(['auth','admin']);
         $this->setImageDefaultsFromConfig('marketingImage');
     }
     /**
@@ -89,6 +89,10 @@ class MarketingImageController extends Controller
             'is_featured' => $request->get('is_featured'),
             'image_weight' => $request->get('image_weight')
         ]);
+        echo "<pre>";
+        print_r($marketingImage);
+        echo "<pre>";
+        exit();
         // save model
         $marketingImage->save();
         // get instance of file
@@ -140,7 +144,7 @@ class MarketingImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditImageRequest $request, $id)
     {
         $marketingImage = MarketingImage::findOrFail($id);
         $this->setUpdatedModelValues($request, $marketingImage);
