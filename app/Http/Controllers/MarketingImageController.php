@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateImageRequest;
-use App\Http\Requests\EditImageRequest;
-use App\MarketingImage;
 use App\Traits\ManagesImages;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
-use Intervention\Image\Image;
+use App\Http\Requests\CreateImageRequest;
+use App\MarketingImage;
+use App\Http\Requests\EditImageRequest;
 
 class MarketingImageController extends Controller
 {
@@ -51,37 +48,6 @@ class MarketingImageController extends Controller
      */
     public function store(CreateImageRequest $request)
     {
-//        //create new instance of model to save from form
-//        $marketingImage = new MarketingImage([
-//            'image_name' => $request->get('image_name'),
-//            'image_extension' => $request->file('image')
-//                ->getClientOriginalExtension(),
-//            'is_active' => $request->get('is_active'),
-//            'is_featured' => $request->get('is_featured'),
-//        ]);
-//        $marketingImage->save();
-//        //parts of the image we will need
-//        $file = Input::file('image');
-//        $imageName = $marketingImage->image_name;
-//        $extension = $request->file('image')
-//            ->getClientOriginalExtension();
-//        //create instance of image from temp upload
-//        $image = Image::make($file->getRealPath());
-//        //save image with thumbnail
-//        $image->save(public_path() . $this->destinationFolder
-//            . $imageName
-//            . '.'
-//            . $extension)
-//            ->resize(120, 120)
-//            // ->greyscale()
-//            ->save(public_path()
-//                . $this->destinationThumbnail
-//                . 'thumb-'
-//                . $imageName
-//                . '.'
-//                . $extension);
-        //create new instance of model to save from form
-
         $marketingImage = new MarketingImage([
             'image_name' => $request->get('image_name'),
             'image_extension' => $request->file('image')->getClientOriginalExtension(),
@@ -89,10 +55,6 @@ class MarketingImageController extends Controller
             'is_featured' => $request->get('is_featured'),
             'image_weight' => $request->get('image_weight')
         ]);
-        echo "<pre>";
-        print_r($marketingImage);
-        echo "<pre>";
-        exit();
         // save model
         $marketingImage->save();
         // get instance of file
@@ -100,7 +62,7 @@ class MarketingImageController extends Controller
         // pass in the file and the model
         $this->saveImageFiles($file, $marketingImage);
         alert()->success('Congrats!', 'Marketing Image Created!');
-        return redirect()->route('marketing-image.show', [$marketingImage]);
+        return redirect()->route('marketing-image.show', ['marketingImage' => $marketingImage]);
     }
 
     /**

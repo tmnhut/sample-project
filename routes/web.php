@@ -52,7 +52,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('register', 'Auth\AuthController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\AuthController@register');
 
-// Profile route
+// Profile routes
 Route::get('show-profile', 'ProfileController@showProfileToUser')->name('show-profile');
 
 Route::get('determine-profile-route', 'ProfileController@determineProfileRoute')->name('determine-profile-route');
@@ -61,6 +61,7 @@ Route::resource('profile', 'ProfileController');
 
 Route::resource('user', 'UserController');
 
+// Setting routes
 Route::get('settings', 'SettingsController@edit');
 Route::post('settings', 'SettingsController@update')->name('user-update');
 
