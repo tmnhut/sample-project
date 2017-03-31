@@ -18,7 +18,12 @@
     }
     .circ:hover {
               box-shadow: 0 0 0 3px #f00;
-          }
+    }
+    .carousel-inner img {
+        margin: auto;
+    }
 </style>
 <!--sweet alert  -->
 <link rel="stylesheet" type="text/css" href="/css/sweetalert.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">

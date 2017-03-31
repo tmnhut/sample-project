@@ -28,20 +28,32 @@
                         About
                     </a>
                 </li>
+                @if (Auth::check() && Auth::user()->isAdmin())
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                           role="button" aria-haspopup="true" aria-expanded="false">
+                            Users<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/user">Users</a></li>
+                            <li><a href="/profile">Profiles</a></li>
+                        </ul>
+                    </li>
+
+                @endif
                 <li class="dropdown">
-                    <a href="#"
-                       class="dropdown-toggle"
-                       data-toggle="dropdown"
-                       role="button"
-                       aria-haspopup="true"
-                       aria-expanded="false">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
                         Content
                         <span class="caret"></span></a>
-                    <ul class="dropdown-menu"><li>
+                    <ul class="dropdown-menu">
+                        <li>
                             <a href="/widget">
                                 Widgets
                             </a>
                         </li>
+                        @if (Auth::check() && Auth::user()->isAdmin())
+                            <li><a href="/marketing-image">Marketing Images</a></li>
+                        @endif
                     </ul>
                 </li>
                 @if (Auth::check())
@@ -56,6 +68,18 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
+                            <li><a href="/determine-profile-route">Profile</a></li>
+                            <li><a href="/settings">Settings</a></li>
+                            <li>
+                                <a href="/auth/facebook">
+                                    <i class="fa fa-facebook"></i>
+                                    &nbsp;&nbsp;
+                                    Sync
+                                </a>
+                            </li>
+                            @if(Auth::user()->isAdmin())
+                                <li><a href="/admin">Admin</a></li>
+                            @endif
                             <li>
                                 <a href="/logout"
                                    onclick="event.preventDefault();
@@ -82,6 +106,17 @@ document.getElementById('logout-form').submit();">
                     <li><a href="/register">
                             Register
                         </a>
+                    </li>
+                    <li>
+                        <a href="/auth/facebook">
+                            <i class="fa fa-facebook"></i>
+                            &nbsp;&nbsp;
+                            Sign in
+                        </a>
+                    </li>
+                    <li><a href="/auth/github">
+                            <i class="fa fa-github"></i>
+                            &nbsp;&nbsp; Sign in</a>
                     </li>
                 @endif
             </ul>

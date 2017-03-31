@@ -105,6 +105,14 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <a href="/auth/facebook">
+                    <button type="button"
+                            class="btn btn-primary btn-lg btn-block">
+                        Facebook Sign In
+                    </button>
+                </a>
+            </div>
         </div>
     </div>
 @endsection

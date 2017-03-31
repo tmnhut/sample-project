@@ -63,14 +63,9 @@ class WidgetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Widget $widget, $slug = '')
+    public function show($id)
     {
-        if ($widget->slug !== $slug) {
-            return Redirect::route('widget.show', [
-                'widget' => $widget,
-                'slug' => $widget->slug
-            ], 301);
-        }
+        $widget = Widget::findOrFail($id);
         return view('widget.show', compact('widget'));
     }
     /**
@@ -79,8 +74,9 @@ class WidgetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Widget $widget)
+    public function edit($id)
     {
+        $widget = Widget::findOrFail($id);
         return view('widget.edit', compact('widget'));
     }
 
@@ -91,21 +87,26 @@ class WidgetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Widget $widget)
+    public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => 'required|string|max:40|unique:widgets,name,'.$id
+        ]);
+
+        $widget = Widget::findOrFail($id);
+
         if ( !$this->adminOrCurrentUserOwns($widget)){
             throw new UnauthorizedException;
         }
-        $this->validate($request, [
-            'name' => 'required|string|max:40|unique:widgets,name,'.$widget->id
-        ]);
+
         $slug = str_slug($request->name, "-");
-        $widget->update(['name' => $request->name,
+        $widget->update([
+            'name' => $request->name,
             'slug' => $slug,
             'user_id' => Auth::id()]);
         alert()->success('Congrats!', 'You updated a widget');
         return Redirect::route('widget.show', [
-            'widget' => $widget, 'slug' =>$slug
+            'id' => $id, 'slug' =>$slug
         ]);
     }
 

@@ -7,6 +7,7 @@
                 data-dismiss="alert"
                 aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
+        <h1>404</h1>
         <strong>Oh Snap!</strong> We can't find what you are looking for...
     </div>
 @endsection

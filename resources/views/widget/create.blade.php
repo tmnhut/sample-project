@@ -13,7 +13,7 @@
     <form class="form"
           role="form"
           method="POST"
-          action="{{ url('/widget') }}">
+          action="{{ url('/widget/create') }}">
         {{ csrf_field() }}
                 <!-- name Form Input -->
         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

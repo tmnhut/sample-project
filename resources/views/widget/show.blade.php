@@ -50,7 +50,7 @@
 
                 @if(Auth::user()->adminOrCurrentUserOwns($widget) === 'Admin')
 
-                    <td> <a href="/widget/{{ $widget->id }}/edit">
+                    <td> <a href="/widget/edit/{{ $widget->id }}">
 
                             <button type="button" class="btn btn-default">
 
