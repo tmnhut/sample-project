@@ -18,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
 //            $view->with('copyright', Copyright::displayNotice());
 //        });
 
-        $value = \App\Utilities\Copyright::displayNotice();
+        $value = Copyright::displayNotice();
         view()->share('copyright', $value);
     }
 

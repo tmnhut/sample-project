@@ -52,6 +52,9 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('register', 'Auth\AuthController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\AuthController@register');
 
+// Maketing Image
+Route::resource('marketing-image', 'MarketingImageController');
+
 // Profile routes
 Route::get('show-profile', 'ProfileController@showProfileToUser')->name('show-profile');
 
@@ -65,5 +68,4 @@ Route::resource('user', 'UserController');
 Route::get('settings', 'SettingsController@edit');
 Route::post('settings', 'SettingsController@update')->name('user-update');
 
-// Maketing Image
-Route::resource('marketing-image', 'MarketingImageController');
+

@@ -9,7 +9,8 @@ class MarketingImage extends SuperModel
 {
     use ShowsImages;
 
-    protected $fillable = ['is_active',
+    protected $fillable = [
+        'is_active',
         'is_featured',
         'image_name',
         'image_extension',

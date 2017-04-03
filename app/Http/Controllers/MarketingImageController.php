@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\MarketingImage;
 use App\Traits\ManagesImages;
 use App\Http\Requests\CreateImageRequest;
-use App\MarketingImage;
 use App\Http\Requests\EditImageRequest;
 
 class MarketingImageController extends Controller
@@ -48,12 +48,13 @@ class MarketingImageController extends Controller
      */
     public function store(CreateImageRequest $request)
     {
+        //create new instance of model to save from form
         $marketingImage = new MarketingImage([
-            'image_name' => $request->get('image_name'),
-            'image_extension' => $request->file('image')->getClientOriginalExtension(),
-            'is_active' => $request->get('is_active'),
-            'is_featured' => $request->get('is_featured'),
-            'image_weight' => $request->get('image_weight')
+            'image_name'        => $request->get('image_name'),
+            'image_extension'   => $request->file('image')->getClientOriginalExtension(),
+            'is_active'         => $request->get('is_active'),
+            'is_featured'       => $request->get('is_featured'),
+            'image_weight'      => $request->get('image_weight')
         ]);
         // save model
         $marketingImage->save();
@@ -61,8 +62,9 @@ class MarketingImageController extends Controller
         $file = $this->getUploadedFile();
         // pass in the file and the model
         $this->saveImageFiles($file, $marketingImage);
-        alert()->success('Congrats!', 'Marketing Image Created!');
-        return redirect()->route('marketing-image.show', ['marketingImage' => $marketingImage]);
+        alert()->success('Congrats!', 'Marketing Image And Thumbnail Created!');
+        return redirect()->route('marketing-image.show', [$marketingImage]);
+
     }
 
     /**

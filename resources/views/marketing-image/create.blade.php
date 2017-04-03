@@ -18,9 +18,7 @@
 
     <hr/>
 
-    <form class="form" role="form" method="POST"
-          action="{{ url('/marketing-image') }}"
-          enctype="multipart/form-data">
+    <form class="form" role="form" method="POST" action="{{ url('/marketing-image') }}" enctype="multipart/form-data">
 
     {{ csrf_field() }}
 
