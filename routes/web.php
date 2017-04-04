@@ -68,4 +68,6 @@ Route::resource('user', 'UserController');
 Route::get('settings', 'SettingsController@edit');
 Route::post('settings', 'SettingsController@update')->name('user-update');
 
+Route::get('api/widget-data', 'ApiController@widgetData');
+
 
