@@ -107,7 +107,7 @@ document.getElementById('logout-form').submit();">
                             Register
                         </a>
                     </li>
-                    <li>
+                    {{--<li>
                         <a href="/auth/facebook">
                             <i class="fa fa-facebook"></i>
                             &nbsp;&nbsp;
@@ -117,7 +117,7 @@ document.getElementById('logout-form').submit();">
                     <li><a href="/auth/github">
                             <i class="fa fa-github"></i>
                             &nbsp;&nbsp; Sign in</a>
-                    </li>
+                    </li>--}}
                 @endif
             </ul>
         </div><!--/.nav-collapse -->
