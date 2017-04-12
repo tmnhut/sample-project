@@ -31,8 +31,10 @@ Route::post('widget/edit/{id}', 'WidgetController@update')->name('widget.update'
 Route::get('widget/{id}-{slug?}', 'WidgetController@show')->name('widget.show');
 
 // Admin route
-Route::get('/admin', 'AdminController@index')->name('admin');
-
+//Route::get('/admin', 'AdminController@index')->name('admin');
+Route::get('/admin', ['as' => 'admin.index', 'uses' => function(){
+    return view('admin.index');
+}]);
 // Socialite routes
 Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
